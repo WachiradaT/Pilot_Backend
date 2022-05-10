@@ -4,6 +4,7 @@ const bodyParcer = require('body-parser')
 const app = express()
 
 const maneger = require('./router/maneger')
+const tool = require('./router/tools')
 
 app.use(cors())
 app.use(bodyParcer.json())
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/maneger',maneger)
+app.use('/tool', tool)
 
 
 

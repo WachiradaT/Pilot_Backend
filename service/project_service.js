@@ -77,6 +77,17 @@ async function getProjectIdByManegerId(manegerId) {
     })
 }
 
+async function getProjecttoolsIdBytoolsId(toolsId) {
+    return new Promise(resolve => {
+        const get_projetctoolsIds = `select projectToolsId from projecttools where toolsId = ${manegerId}`
+        connect.query(get_projetctoolsIds, (err, projectToolsId, _) => {
+            if (err)
+                resolve(err)
+            resolve(projectToolsId)
+        })
+    })
+}
+
 async function deleteProjectToolByProjectId(projectId) {
     return new Promise(resolve => {
         const delete_projectTool = `delete from projecttools where projectId = ${projectId}`
@@ -88,9 +99,22 @@ async function deleteProjectToolByProjectId(projectId) {
     })
 }
 
+async function deleteProjectToolBytoolsId(toolsId){
+    return new Promise (resolve => {
+        const delete_projectTool_toolsId = `delete from projecttools where toolsId = ${toolsId}`
+        connect.query(delete_projectTool_toolsId, (err,message,_) =>{
+            if(err)
+                resolve(err)
+            resolve(`delete projecttool by toolsId = ${toolsId} success`)
+        })
+    })
+}
+
 module.exports = {
     getProjects,
     getProjectTools,
     getProjectManeger,
-    deleteProjectByManegerId
+    deleteProjectByManegerId,
+    deleteProjectToolBytoolsId,
+    getProjecttoolsIdBytoolsId
 }
